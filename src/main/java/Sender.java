@@ -16,12 +16,12 @@ public class Sender extends Thread {
     public void run() {
         long lastCall = 0;
         while (true) {
-            int limit = new Random().nextInt(1000) * 1000 + 10000;
+            int limit = new Random().nextInt(1000) * 1000 + 60000;
             if (System.currentTimeMillis() - lastCall > limit) {
                 lastCall = System.currentTimeMillis();
                 String date = new SimpleDateFormat("EEEE", new Locale("en")).format(new Date());
                 String time = new SimpleDateFormat("hh").format(new Date());
-                boolean isTimeToSend = date.toLowerCase().equals("wednesday") && (time.equals("10") || time.equals("12"));
+                boolean isTimeToSend = date.toLowerCase().equals("wednesday") && (time.equals("8") || time.equals("10"));
                 if (isTimeToSend && needToSendWednesday) {
                     bot.sendPhoto(Context.SISKAPISKA_CHAT_ID, Context.WEDNESDAY_PHOTO_ID);
                     needToSendWednesday = false;
