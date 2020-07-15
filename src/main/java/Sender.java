@@ -16,8 +16,7 @@ public class Sender extends Thread {
     public void run() {
         long lastCall = 0;
         while (true) {
-            long limit = new Random(1000).nextLong() * 1000;
-            System.out.println("limit = " + limit);
+            int limit = new Random().nextInt(1000) * 1000 + 10000;
             if (System.currentTimeMillis() - lastCall > limit) {
                 lastCall = System.currentTimeMillis();
                 String date = new SimpleDateFormat("EEEE", new Locale("en")).format(new Date());
