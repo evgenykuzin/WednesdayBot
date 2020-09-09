@@ -19,9 +19,11 @@ public class Sender extends Thread {
             int limit = new Random().nextInt(1000) * 1000 + 60000;
             if (System.currentTimeMillis() - lastCall > limit) {
                 lastCall = System.currentTimeMillis();
-                String date = new SimpleDateFormat("EEEE", new Locale("en")).format(new Date());
-                String time = new SimpleDateFormat("hh").format(new Date());
-                boolean isTimeToSend = date.toLowerCase().equals("wednesday") && (time.equals("8") || time.equals("10"));
+                String date = new SimpleDateFormat("EEEE", new Locale("ru")).format(new Date());
+                int houres = Integer.parseInt(new SimpleDateFormat("HH").format(new Date()));
+                int minutes = Integer.parseInt(new SimpleDateFormat("mm").format(new Date()));
+                int seconds = Integer.parseInt(new SimpleDateFormat("ss").format(new Date()));
+                boolean isTimeToSend = date.toLowerCase().equals("wednesday") && houres == 10 && minutes == 30 && seconds == 30;
                 if (isTimeToSend && needToSendWednesday) {
                     bot.sendPhoto(Context.SISKAPISKA_CHAT_ID, Context.WEDNESDAY_PHOTO_ID);
                     needToSendWednesday = false;
